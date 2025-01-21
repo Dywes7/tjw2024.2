@@ -11,6 +11,10 @@ public interface AlunoService {
 	
 	Aluno buscarPorId(Long id);
 	
+	void excluirPorId(Long id);
+	
+	Aluno cadastrar(Aluno a);
+	
 	
 
 }

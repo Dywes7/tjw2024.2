@@ -106,8 +106,8 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 		 * aluno.getNome() + " " + aluno.getEmail()); }
 		 */
 		
-		Aluno a = aluno.buscarPorId(1L);
-		System.out.println(a.getNome());
+		//Aluno a = aluno.buscarPorId(1L);
+		//System.out.println(a.getNome());
 		
 		
 	}

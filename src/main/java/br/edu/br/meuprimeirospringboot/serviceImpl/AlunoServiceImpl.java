@@ -25,6 +25,16 @@ public class AlunoServiceImpl  implements AlunoService{
 	public Aluno buscarPorId(Long id) {
 		return aluno.findById(id).orElseThrow(() -> new IllegalArgumentException("Aluno " + id + " não encontrado"));
 	}
+
+	@Override
+	public void excluirPorId(Long id) {
+		aluno.deleteById(id);
+	}
+
+	@Override
+	public Aluno cadastrar(Aluno a) {
+		return aluno.save(a);
+	}
 	
 	
 }
