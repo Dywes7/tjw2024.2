@@ -35,6 +35,13 @@ public class AlunoServiceImpl  implements AlunoService{
 	public Aluno cadastrar(Aluno a) {
 		return aluno.save(a);
 	}
-	
-	
+
+	@Override
+	public Aluno editar(Aluno a) {
+		Aluno al = this.buscarPorId(a.getId());
+		al.setNome(a.getNome());
+		al.setEmail(a.getEmail());
+		al.setMatricula(a.getMatricula());
+		return aluno.save(al);
+	}
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<title>TJW 2024.2</title>
@@ -85,17 +86,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Fulano de Tal</td>
-								<td>fulano@gmail.com</td>
-								<td>2024.1-cc-1234</td>
+							<tr th:each="aluno : ${alunos}">
+								<td th:text="${aluno.id}">1</td>
+								<td th:text="${aluno.nome}">Fulano de Tal</td>
+								<td th:text="${aluno.email}">fulano@gmail.com</td>
+								<td th:text="${aluno.matricula}">2024.1-cc-1234</td>
 								<td colspan="2">
-									<a class="btn btn-info btn-sm" href="/alunos/editar/1" role="button">
+									<a class="btn btn-info btn-sm" th:href="@{/alunos/editar/{id} (id=${aluno.id})}" role="button">
 										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 									</a>
 
-									<a class="btn btn-danger btn-sm" href="/alunos/excluir/1" role="button">
+									<a class="btn btn-danger btn-sm" th:href="@{/alunos/excluir/{id} (id=${aluno.id})} " role="button">
 										<span class="oi oi-brush" title="Excluir" aria-hidden="true"></span>
 									</a>
 

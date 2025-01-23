@@ -15,6 +15,8 @@ public interface AlunoService {
 	
 	Aluno cadastrar(Aluno a);
 	
+	Aluno editar(Aluno a);
+	
 	
 
 }
