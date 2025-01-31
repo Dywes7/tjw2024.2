@@ -1,8 +1,11 @@
 package br.edu.br.meuprimeirospringboot.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -40,8 +43,9 @@ public class Aluno {
 	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Professor> professores;
 	
-	@Temporal(TemporalType.TIME)
-	private Date dtNascimento;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dtNascimento;
+
 	
 	@Transient
 	private int idade;
@@ -70,10 +74,10 @@ public class Aluno {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getDtNascimento() {
+	public LocalDate getDtNascimento() {
 		return dtNascimento;
 	}
-	public void setDtNascimento(Date dtNascimento) {
+	public void setDtNascimento(LocalDate dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 	public int getIdade() {

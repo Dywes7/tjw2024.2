@@ -42,6 +42,8 @@ public class AlunoServiceImpl  implements AlunoService{
 		al.setNome(a.getNome());
 		al.setEmail(a.getEmail());
 		al.setMatricula(a.getMatricula());
+		al.setCpf(a.getCpf());
+		al.setDtNascimento(a.getDtNascimento());
 		return aluno.save(al);
 	}
 }
