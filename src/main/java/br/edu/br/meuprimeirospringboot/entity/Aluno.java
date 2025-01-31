@@ -30,6 +30,7 @@ public class Aluno {
 	private String nome;
 	private String matricula;
 	private String email;
+	private String cpf;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco e;
 	
@@ -81,6 +82,14 @@ public class Aluno {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
 	public Endereco getE() {
 		return e;
 	}

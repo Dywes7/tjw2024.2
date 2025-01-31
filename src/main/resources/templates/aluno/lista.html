@@ -89,6 +89,7 @@
 								<th>Nome</th>
 								<th>E-mail</th>
 								<th>Matrícula</th>
+								<th>CPF</th>
 								<th>Ação</th>
 							</tr>
 						</thead>
@@ -98,6 +99,7 @@
 								<td th:text="${aluno.nome}">Fulano de Tal</td>
 								<td th:text="${aluno.email}">fulano@gmail.com</td>
 								<td th:text="${aluno.matricula}">2024.1-cc-1234</td>
+								<td th:text="${aluno.cpf}">000.000.000-00</td>
 								<td colspan="2">
 									<a class="btn btn-info btn-sm" th:href="@{/alunos/editar/{id} (id=${aluno.id})}" role="button">
 										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
