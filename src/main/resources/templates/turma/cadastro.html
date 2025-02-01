@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{home :: page_head}"></head>
+<body>
+    <header th:replace="~{home :: page_header}"></header>
+
+    <div class="layout-main">
+        <aside th:replace="~{home :: page_anside}"></aside>
+
+        <section class="layout-content">
+            <div class="page-header">
+                <nav class="navbar navbar-expand-md navbar-light bg-light">
+                    <a class="btn btn-primary btn-md" href="/turmas/listar" role="button">
+                        <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+                        <span>Listar Turmas</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="container" id="form-cadastro">
+                <form th:action=" ${turma.id == null} ? @{/turmas/salvar} : @{/turmas/editar}" method="POST" th:object="${turma}">
+                    <div class="form-row">
+						<div class="form-group col-md-6">
+						    <label for="semestre">Semestre</label>
+						    <select class="form-control" id="semestre" th:field="*{semestre}">
+						        <option value="">Selecione um semestre</option>
+						        <option th:each="s : ${semestres}" th:value="${s.id}" th:text="${s.code}"></option>
+						    </select>
+						</div>
+						
+						<div class="form-group col-md-6">
+						    <label for="disciplinas">Disciplinas</label>
+						    <select class="form-control" id="disciplinas" th:field="*{disciplinas}" multiple>
+						        <option th:each="d : ${disciplinas}" th:value="${d.id}" th:text="${d.nome}"></option>
+						    </select>
+						</div>
+						
+                    </div>
+					<input type="hidden" th:field="*{id}" />
+                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer class="layout-footer">
+        <div class="container"></div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+        $(".navbar-toggler").click(function () {
+            $(".sidebar").toggleClass("sidebar-open");
+        });
+    </script>
+</body>
+</html>

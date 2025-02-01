@@ -1,13 +1,18 @@
 package br.edu.br.meuprimeirospringboot.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Semestre {
@@ -21,6 +26,9 @@ public class Semestre {
     private LocalDate dataInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFim; 
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "semestre", cascade = CascadeType.ALL)
+	private List<Turma> turmas = new ArrayList<Turma>();
 	
 	
 	public Long getId() {

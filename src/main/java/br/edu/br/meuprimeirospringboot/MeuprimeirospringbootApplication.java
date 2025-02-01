@@ -11,16 +11,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.edu.br.meuprimeirospringboot.entity.Aluno;
+import br.edu.br.meuprimeirospringboot.entity.Professor;
 import br.edu.br.meuprimeirospringboot.repository.AlunoRepository;
 import br.edu.br.meuprimeirospringboot.repository.AlunosCustimReoository;
 import br.edu.br.meuprimeirospringboot.repository.ProfessorRepository;
 import br.edu.br.meuprimeirospringboot.repository.TelefoneRepository;
+import br.edu.br.meuprimeirospringboot.repository.TurmaRepository;
 import br.edu.br.meuprimeirospringboot.serviceImpl.AlunoServiceImpl;
 
 @SpringBootApplication
 public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 	@Autowired
 	private AlunoServiceImpl aluno;
+	@Autowired
+	private ProfessorRepository professor;
+	
 	
 	
 	public static void main(String[] args) {
@@ -62,13 +67,23 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 		 * System.out.println(telefone.getNumero()); }
 		 */
 		
-		//Professor p1 = new Professor();
-		//p1.setNome("Corneli Gomes");
-		//professor.save(p1);
 		
-		//Professor p2 = new Professor();
-		//p2.setNome("Otávio Alcantara");
-		//professor.save(p2);
+		
+		Professor p1 = new Professor();
+		p1.setNome("Corneli Gomes");
+		professor.save(p1);
+		
+		Professor p2 = new Professor();
+		p2.setNome("Otávio Alcantara");
+		professor.save(p2);
+		
+		Professor p3 = new Professor();
+		p3.setNome("Jean Marcelo");
+		professor.save(p3);
+		
+		
+		
+		
 		
 		/*
 		 * Aluno a = aluno.findById(1L).get();

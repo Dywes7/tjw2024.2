@@ -1,10 +1,14 @@
 package br.edu.br.meuprimeirospringboot.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Disciplina {
@@ -16,6 +20,14 @@ public class Disciplina {
 	private int cargaHorariaHoras;
 	@Column(columnDefinition = "TEXT")
 	private String ementa;
+	
+	private int horario;
+	
+	@ManyToOne
+	private Professor professor;
+	
+	@ManyToMany(mappedBy = "disciplinas")
+	private List<Turma> turmas;
 	
 	
 	public Long getId() {
@@ -41,6 +53,24 @@ public class Disciplina {
 	}
 	public void setEmenta(String ementa) {
 		this.ementa = ementa;
+	}
+	public int getHorario() {
+		return horario;
+	}
+	public void setHorario(int horario) {
+		this.horario = horario;
+	}
+	public Professor getProfessor() {
+		return professor;
+	}
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
 	}
 	
 

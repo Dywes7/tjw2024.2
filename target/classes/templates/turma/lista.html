@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{home :: page_head}"></head>
+<body>
+	<header th:replace="~{home :: page_header}"></header>
+
+	<div class="layout-main">
+
+		<aside th:replace="~{home :: page_anside}"></aside>
+
+		<section class="layout-content">
+			<nav class="navbar navbar-expand-md bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+					<a class="btn btn-primary btn-md" href="/turmas/cadastrar" role="button">
+						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+						<span>Nova Turma</span>
+					</a>
+				</div>
+			</nav>
+
+			<div class="container">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover table-sm">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Semestre</th>
+								<th>Disciplinas</th>
+								<th>Ação</th>
+							</tr>
+						</thead>
+						<tbody>
+						    <tr th:each="turma : ${turmas}">
+						        <td th:text="${turma.id}">1</td>
+						        <td th:text="${turma.semestre.code}">2025.1</td>
+								<td>
+								    <span th:each="disciplina, iterStat : ${turma.disciplinas}">
+								        <span th:text="${disciplina.nome}"></span>
+								        <span th:if="${!iterStat.last}">, </span>
+								    </span>
+								</td>
+						        <td>
+						            <a class="btn btn-info btn-sm" th:href="@{/turmas/editar/{id} (id=${turma.id})}" role="button">
+						                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+						            </a>
+						            <a class="btn btn-danger btn-sm" th:href="@{/turmas/excluir/{id} (id=${turma.id})}" role="button">
+						                <span class="oi oi-trash" title="Excluir" aria-hidden="true"></span>
+						            </a>
+						        </td>
+						    </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<footer class="layout-footer">
+		<div class="container">
+
+		</div>
+	</footer>
+
+	<!-- Bootstrap core JavaScript
+================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+		$(function () {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document).ready(function () {
+			$(".navbar-toggle").click(function () {
+				$(".sidebar").toggleClass("sidebar-open");
+			})
+		});
+
+	</script>
+</body>
+
+</html>

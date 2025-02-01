@@ -1,13 +1,16 @@
 package br.edu.br.meuprimeirospringboot.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Embedded;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +25,9 @@ public class Professor {
 	
 	@ManyToMany(mappedBy = "professores")
 	private List<Aluno> alunos;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "professor", cascade = CascadeType.ALL)
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 	public Long getId() {
 		return id;
@@ -45,6 +51,14 @@ public class Professor {
 
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 	
 	
