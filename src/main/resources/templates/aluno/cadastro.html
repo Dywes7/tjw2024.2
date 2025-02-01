@@ -1,62 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>TJW 2024.2</title>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="icon" href="/image/favicon.png"/>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
-
-    <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet"/>
-</head>
+<head th:replace="~{home :: page_head}"></head>
 <body>
-    <header>
-        <nav class="navbar navbar-dark bg-dark fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="btn btn-dark navbar-toggler">
-                        <i class="oi oi-menu"></i>
-                    </button>
-                    <a class="navbar-brand" href="#">TJW 2024.2</a>
-					<a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-					    Logout
-					</a>
-
-					<form id="logout-form" th:action="@{/logout}" method="POST" style="display: none;">
-					    <input type="hidden" name="_csrf" value="${_csrf.token}">
-					</form>
-					
-					
-                </div>
-            </div>
-        </nav>
-    </header>
+    <header th:replace="~{home :: page_header}"></header>
 
     <div class="layout-main">
-        <aside>
-            <nav class="sidebar sidebar-open">
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link" href="/"> <i class="oi oi-home"></i> <span>Home</span></a></li>
-                </ul>
-
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><span class="nav-link active">Alunos</span></li>
-                    <li class="nav-item"><a class="nav-link" href="/alunos/cadastrar"><i class="oi oi-plus"></i><span>Cadastrar</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/alunos/listar"><i class="oi oi-spreadsheet"></i><span>Listar</span></a></li>
-                </ul>
-
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><span class="nav-link active">Disciplinas</span></li>
-                    <li class="nav-item"><a class="nav-link" href="/disciplinas/cadastrar"><i class="oi oi-plus"></i><span>Cadastrar</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/disciplinas/listar"><i class="oi oi-spreadsheet"></i><span>Listar</span></a></li>
-                </ul>
-            </nav>
-        </aside>
+        <aside th:replace="~{home :: page_anside}"></aside>
 
         <section class="layout-content">
             <div class="page-header">

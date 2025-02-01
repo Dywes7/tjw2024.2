@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="page_head">
 	<title>TJW 2024.2</title>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,7 +19,7 @@
 </head>
 
 <body>
-	<header>
+	<header th:fragment="page_header">
 		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -27,6 +27,10 @@
 						<i class="oi oi-menu"></i>
 					</button>
 					<a class="navbar-brand " href="#">TJW 2024.2</a>
+					<a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+					<form id="logout-form" th:action="@{/logout}" method="POST" style="display: none;">
+						<input type="hidden" name="_csrf" value="${_csrf.token}">
+					</form>
 				</div>
 			</div>
 		</nav>
@@ -34,7 +38,7 @@
 
 	<div class="layout-main">
 
-		<aside>
+		<aside th:fragment="page_anside">>
 			<nav class="sidebar sidebar-open">
 				<ul class="nav nav-pills">
 					<li class="nav-item"><a class="nav-link " href="/"> <i class="oi oi-home"></i> <span>Home</span>
@@ -52,10 +56,19 @@
 				</ul>
 				<ul class="nav nav-pills">
 					<li class="nav-item"><span class="nav-link active">Disciplinas</span></li>
-					<li class="nav-item"><a class="nav-link" href="/alunos/cadastrar"> <i class="oi oi-plus"></i>
+					<li class="nav-item"><a class="nav-link" href="/disciplinas/cadastrar"> <i class="oi oi-plus"></i>
 							<span>Cadastrar </span>
 						</a></li>
-					<li class="nav-item"><a class="nav-link" href="/alunos/listar"> <i class="oi oi-spreadsheet"></i>
+					<li class="nav-item"><a class="nav-link" href="/disciplinas/listar"> <i class="oi oi-spreadsheet"></i>
+							<span>Listar </span>
+						</a></li>
+				</ul>
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">Semestres</span></li>
+					<li class="nav-item"><a class="nav-link" href="/semestres/cadastrar"> <i class="oi oi-plus"></i>
+							<span>Cadastrar </span>
+						</a></li>
+					<li class="nav-item"><a class="nav-link" href="/semestres/listar"> <i class="oi oi-spreadsheet"></i>
 							<span>Listar </span>
 						</a></li>
 				</ul>

@@ -3,7 +3,6 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{home :: page_head}"></head>
-
 <body>
 	<header th:replace="~{home :: page_header}"></header>
 
@@ -15,9 +14,9 @@
 			<nav class="navbar navbar-expand-md bg-light">
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 
-					<a class="btn btn-primary btn-md" href="/alunos/cadastrar" role="button">
+					<a class="btn btn-primary btn-md" href="/semestres/cadastrar" role="button">
 						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
-						<span>Cadastrar Aluno</span>
+						<span>Novo Semestre</span>
 					</a>
 				</div>
 			</nav>
@@ -28,28 +27,26 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Nome</th>
-								<th>E-mail</th>
-								<th>Matrícula</th>
-								<th>CPF</th>
-								<th>Data de Nascimento</th>
+								<th>Ano</th>
+								<th>Etapa</th>
+								<th>Início do semestre</th>
+								<th>Fim do semestre</th>
 								<th>Ação</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="aluno : ${alunos}">
-								<td th:text="${aluno.id}">1</td>
-								<td th:text="${aluno.nome}">Fulano de Tal</td>
-								<td th:text="${aluno.email}">fulano@gmail.com</td>
-								<td th:text="${aluno.matricula}">2024.1-cc-1234</td>
-								<td th:text="${aluno.cpf}">000.000.000-00</td>
-								<td th:text="${aluno.dtNascimento}">01/01/2000</td>
+							<tr th:each="semestre : ${semestres}">
+								<td th:text="${semestre.id}">1</td>
+								<td th:text="${semestre.ano}">2025</td>
+								<td th:text="${semestre.etapa}">1</td>
+								<td th:text="${semestre.dataInicio}">01/01/2025</td>
+								<td th:text="${semestre.dataFim}">01/07/2025</td>
 								<td colspan="2">
-									<a class="btn btn-info btn-sm" th:href="@{/alunos/editar/{id} (id=${aluno.id})}" role="button">
+									<a class="btn btn-info btn-sm" th:href="@{/semestres/editar/{id} (id=${semestre.id})}" role="button">
 										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 									</a>
 
-									<a class="btn btn-danger btn-sm" th:href="@{/alunos/excluir/{id} (id=${aluno.id})} " role="button">
+									<a class="btn btn-danger btn-sm" th:href="@{/semestres/excluir/{id} (id=${semestre.id})} " role="button">
 										<span class="oi oi-brush" title="Excluir" aria-hidden="true"></span>
 									</a>
 

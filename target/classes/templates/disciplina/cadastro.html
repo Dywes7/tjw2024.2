@@ -10,38 +10,30 @@
         <section class="layout-content">
             <div class="page-header">
                 <nav class="navbar navbar-expand-md navbar-light bg-light">
-                    <a class="btn btn-primary btn-md" href="/alunos/listar" role="button">
+                    <a class="btn btn-primary btn-md" href="/disciplinas/listar" role="button">
                         <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-                        <span>Listar Alunos</span>
+                        <span>Listar Disciplinas</span>
                     </a>
                 </nav>
             </div>
 
             <div class="container" id="form-cadastro">
-                <form th:action=" ${aluno.id == null} ? @{/alunos/salvar} : @{/alunos/editar}" method="POST" th:object="${aluno}">
+                <form th:action=" ${disciplina.id == null} ? @{/disciplinas/salvar} : @{/disciplinas/editar}" method="POST" th:object="${disciplina}">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nome">Nome do Aluno</label>
-                            <input type="text" class="form-control" id="nome" placeholder="Nome Completo" th:field="*{nome}" />
+                            <label for="nome">Nome da Disciplina</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Nome da Disciplina" th:field="*{nome}" />
                            
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="email">E-mail</label>
-                            <input type="email" class="form-control" id="email" placeholder="E-mail" th:field="*{email}" />
-                          
+                            <label for="ementa">Ementa</label>
+							<textarea class="form-control" id="ementa" placeholder="Ementa" th:field="*{ementa}" rows="5"></textarea>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="matricula">Matrícula</label>
-                            <input type="text" class="form-control" id="matricula" placeholder="Matrícula" th:field="*{matricula}" />
+                            <label for="cargaHorariaHoras">Carga Horária (Horas)</label>
+                            <input type="number" class="form-control" id="cargaHorariaHoras" placeholder="Horas" th:field="*{cargaHorariaHoras}" />
                         </div>
-						<div class="form-group col-md-6">
-						    <label for="cpf">CPF</label>
-						    <input type="text" class="form-control" id="cpf" placeholder="CPF" th:field="*{cpf}" />
-						 </div>
-						 <div class="form-group col-md-6">
-						     <label for="dtNascimento">Data de Nascimento</label>
-						     <input type="date" class="form-control" id="dtNascimento" placeholder="Data de Nascimento" th:field="*{dtNascimento}" />
-						 </div>
+
                     </div>
 					<input type="hidden" th:field="*{id}" />
                     <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
