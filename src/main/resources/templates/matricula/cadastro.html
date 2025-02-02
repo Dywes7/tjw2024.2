@@ -22,7 +22,7 @@
                     <div class="form-row">
 						<div class="form-group col-md-6">
 						    <label for="aluno">Aluno</label>
-						    <select class="form-control" id="aluno" th:field="*{aluno}">
+						    <select class="form-control" id="aluno" th:field="*{aluno}" required>
 						        <option value="">Selecione um aluno</option>
 						        <option th:each="a : ${alunos}" th:value="${a.id}" th:text="${a.nome}"></option>
 						    </select>
@@ -30,7 +30,7 @@
 						
 						<div class="form-group col-md-6">
 						    <label for="turma">Turma</label>
-						    <select class="form-control" id="turma" th:field="*{turma}">
+						    <select class="form-control" id="turma" th:field="*{turma}" required>
 						        <option value="">Selecione uma turma</option>
 						        <option th:each="t : ${turmas}" th:value="${t.id}" th:text="${t.id}"></option>
 						    </select>

@@ -22,7 +22,7 @@
                     <div class="form-row">
 						<div class="form-group col-md-6">
 						    <label for="semestre">Semestre</label>
-						    <select class="form-control" id="semestre" th:field="*{semestre}">
+						    <select class="form-control" id="semestre" th:field="*{semestre}" required>
 						        <option value="">Selecione um semestre</option>
 						        <option th:each="s : ${semestres}" th:value="${s.id}" th:text="${s.code}"></option>
 						    </select>
@@ -30,7 +30,7 @@
 						
 						<div class="form-group col-md-6">
 						    <label for="disciplina">Disciplina</label>
-						    <select class="form-control" id="disciplina" th:field="*{disciplina}">
+						    <select class="form-control" id="disciplina" th:field="*{disciplina}" required>
 						        <option value="">Selecione uma disciplina</option>
 						        <option th:each="d : ${disciplinas}" th:value="${d.id}" th:text="${d.nome}"></option>
 						    </select>
