@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.edu.br.meuprimeirospringboot.entity.Aluno;
 import br.edu.br.meuprimeirospringboot.entity.Professor;
+import br.edu.br.meuprimeirospringboot.entity.Role;
 import br.edu.br.meuprimeirospringboot.entity.Telefone;
 import br.edu.br.meuprimeirospringboot.repository.AlunoRepository;
 import br.edu.br.meuprimeirospringboot.repository.AlunosCustimReoository;
@@ -21,6 +22,8 @@ import br.edu.br.meuprimeirospringboot.repository.TelefoneRepository;
 import br.edu.br.meuprimeirospringboot.repository.TurmaRepository;
 import br.edu.br.meuprimeirospringboot.serviceImpl.AlunoServiceImpl;
 import br.edu.br.meuprimeirospringboot.serviceImpl.ProfessorServiceImpl;
+import br.edu.br.meuprimeirospringboot.serviceImpl.UsuarioServiceImpl;
+
 
 @SpringBootApplication
 public class MeuprimeirospringbootApplication  implements CommandLineRunner {
@@ -29,6 +32,8 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 	private AlunoRepository aluno;
 	@Autowired
 	private ProfessorServiceImpl professor;
+	@Autowired
+    private UsuarioServiceImpl usuario;
 	
 	
 	
@@ -73,6 +78,8 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 		 */
 		
 		
+		usuario.criarUsuario("admin", "admin", Role.ADMIN);
+		usuario.criarUsuario("user", "user", Role.USER);
 		
 		professor.salvarSeNaoExistir("Corneli Gomes");
 		professor.salvarSeNaoExistir("Otávio Alcantara");
