@@ -40,9 +40,7 @@ public class SemestreController {
 		} catch (RuntimeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/semestres/cadastrar";
-		}
-		
-		
+		}	
 	}
 	
 	@GetMapping("/excluir/{id}")
@@ -59,8 +57,14 @@ public class SemestreController {
 	}
 	
 	@PostMapping("/editar")
-	String Editar(Semestre s) {
-		semestre.editar(s);
-		return "redirect:/semestres/listar";
+	String Editar(Semestre s, RedirectAttributes redirectAttributes) {
+		try {
+			semestre.editar(s);
+			redirectAttributes.addFlashAttribute("sucesso", "Semestre cadastrado com sucesso!");
+			return "redirect:/semestres/listar";
+		} catch (RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/semestres/editar/" + s.getId();
+		}	
 	}
 }

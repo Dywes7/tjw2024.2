@@ -69,8 +69,15 @@ public class MatriculaController {
 	}
 	
 	@PostMapping("/editar")
-	String Editar(Matricula s) {
-		matricula.editar(s);
-		return "redirect:/matriculas/listar";
+	String Editar(Matricula s, RedirectAttributes redirectAttributes) {
+		try {
+			matricula.editar(s);
+			redirectAttributes.addFlashAttribute("sucesso", "Matrícula realizada com sucesso!");
+			return "redirect:/matriculas/listar";
+		} catch(RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/matriculas/editar/" + s.getId();
+		}
+		
 	}
 }

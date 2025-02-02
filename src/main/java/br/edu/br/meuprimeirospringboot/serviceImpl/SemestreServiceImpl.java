@@ -32,9 +32,18 @@ public class SemestreServiceImpl implements SemestreService {
 		
 	}
 	
+	public boolean isAnoValido(int ano) {
+		return ano >= 2000 && ano <= 2050;
+	}
+	
 	@Override
 	@Transactional
 	public Semestre cadastrar(Semestre s) {
+		
+		if (!isAnoValido(s.getAno())) {
+			throw new RuntimeException("O ano deve estar entre 2000 e 2050.");
+		}
+		
 		if (semestre.existsByAnoAndEtapa(s.getAno(), s.getEtapa())) {
 			throw new RuntimeException("Semestre " + s.getCode() + " já existe!");
 		}
@@ -45,6 +54,14 @@ public class SemestreServiceImpl implements SemestreService {
 	@Override
 	public Semestre editar(Semestre s) {
 		Semestre s1 = this.buscarPorId(s.getId());
+		
+		if (!isAnoValido(s.getAno())) {
+			throw new RuntimeException("O ano deve estar entre 2000 e 2050.");
+		}
+		
+		if (!s.getCode().equals(s1.getCode()) && semestre.existsByAnoAndEtapa(s.getAno(), s.getEtapa())) {
+			throw new RuntimeException("Semestre " + s.getCode() + " já existe!");
+		}
 		
 		s1.setAno(s.getAno());
 		s1.setEtapa(s.getEtapa());

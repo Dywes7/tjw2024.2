@@ -43,12 +43,19 @@ public class MatriculaServiceImpl implements MatriculaService {
 	}
 
 	@Override
-	public Matricula editar(Matricula s) {
-		Matricula m1 = this.buscarPorId(s.getId());
+	public Matricula editar(Matricula m) {
+		Matricula m1 = this.buscarPorId(m.getId());
 		
-		m1.setDataMatricula(s.getDataMatricula());
-		m1.setAluno(s.getAluno());
-		m1.setTurma(s.getTurma());
+		if (!(m1.getAluno().getId().equals(m.getAluno().getId()) && m1.getTurma().getId().equals(m.getTurma().getId()))) {
+		    if (matricula.existsByAlunoIdAndTurmaId(m.getAluno().getId(), m.getTurma().getId())) {
+		        throw new RuntimeException("O aluno já está matriculado nesta turma!");
+		    }
+		}
+		
+		
+		m1.setDataMatricula(m.getDataMatricula());
+		m1.setAluno(m.getAluno());
+		m1.setTurma(m.getTurma());
 		
 		return matricula.save(m1);
 	}

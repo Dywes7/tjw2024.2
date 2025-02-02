@@ -39,7 +39,7 @@
 						    <label for="turma">Turma</label>
 						    <select class="form-control" id="turma" th:field="*{turma}" required>
 						        <option value="">Selecione uma turma</option>
-						        <option th:each="t : ${turmas}" th:value="${t.id}" th:text="${t.id}"></option>
+						        <option th:each="t : ${turmas}" th:value="${t.id}" th:text="${t.id} + ' (' + ${t.disciplina.nome} + ')'"></option>
 						    </select>
 						</div>
 						

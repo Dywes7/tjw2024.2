@@ -45,6 +45,10 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 	public Disciplina editar(Disciplina d) {
 		Disciplina d1 = this.buscarPorId(d.getId());
 		
+		if (!d.getNome().equals(d1.getNome()) && disciplina.existsByNome(d.getNome())) {
+			throw new RuntimeException("Disciplina já existe!");
+		}
+		
 		d1.setNome(d.getNome());
 		d1.setEmenta(d.getEmenta());
 		d1.setCargaHorariaHoras(d.getCargaHorariaHoras());

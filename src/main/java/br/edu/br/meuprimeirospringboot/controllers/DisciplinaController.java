@@ -42,8 +42,7 @@ public class DisciplinaController {
 		} catch (RuntimeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/disciplinas/cadastrar";
-		}
-		
+		}	
 		
 	}
 	
@@ -61,9 +60,15 @@ public class DisciplinaController {
 	}
 	
 	@PostMapping("/editar")
-	String Editar(Disciplina d) {
-		disciplina.editar(d);
-		return "redirect:/disciplinas/listar";
+	String Editar(Disciplina d, RedirectAttributes redirectAttributes) {
+		try {
+			disciplina.editar(d);
+			redirectAttributes.addFlashAttribute("sucesso", "Disciplina cadastrada com sucesso!");
+			return "redirect:/disciplinas/listar";
+		} catch (RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/disciplinas/editar/" + d.getId();
+		}
 	}
 
 }

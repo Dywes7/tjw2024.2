@@ -56,8 +56,16 @@ public class AlunoController {
 	}
 	
 	@PostMapping("/editar")
-	String editar(Aluno a) {
-		aluno.editar(a);
-		return "redirect:/alunos/listar";	
+	String editar(Aluno a, RedirectAttributes redirectAttributes) {
+		try {
+			aluno.editar(a);
+			redirectAttributes.addFlashAttribute("sucesso", "Aluno cadastrado com sucesso!");
+			return "redirect:/alunos/listar";
+		} catch (RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/alunos/editar/" + a.getId();
+		}
+		
+			
 	}
 }

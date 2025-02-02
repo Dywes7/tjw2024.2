@@ -26,7 +26,7 @@ public class Turma {
 	private Disciplina disciplina;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "turma", cascade = CascadeType.ALL)
-	private List<Matricula> matricula = new ArrayList<Matricula>();
+	private List<Matricula> matriculas = new ArrayList<Matricula>();
 	
 	public Long getId() {
 		return id;
@@ -51,6 +51,14 @@ public class Turma {
 
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
+	}
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
 	
 

@@ -12,27 +12,27 @@
         <aside th:replace="~{home :: page_anside}"></aside>
         <section class="layout-content">
             <div class="container">
-                <div th:each="aluno : ${alunos}" style="margin-bottom: 30px; padding: 10px; background-color: #f9f9f9; border-radius: 8px;">
-                    <h3 th:text="${aluno.nome}"></h3>
+                <div th:each="turma : ${turmas}" style="margin-bottom: 30px; padding: 10px; background-color: #f9f9f9; border-radius: 8px;">
+                    <h3 th:text="'Turma ' + ${turma.id} + ' (' + ${turma.disciplina.nome} + ')'"></h3>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-sm" style="width: 100%; border-collapse: collapse;">
                             <thead>
                                 <tr>
-                                    <th>ID Matrícula</th>        
-                                    <th>Turma (ID)</th>
-                                    <th>Disciplina</th>
+                                    <th>Matrícula (ID)</th>        
+                                    <th>Aluno</th>
+                                    <th>Semestre</th>
                                     <th>Data da Matrícula</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="matricula : ${aluno.matriculas}">
+                                <tr th:each="matricula : ${turma.matriculas}">
                                     <td th:text="${matricula.id}">1</td>
-                                    <td th:text="${matricula.turma.id}">1</td>
-                                    <td th:text="${matricula.turma.disciplina.nome}">1</td>
+                                    <td th:text="${matricula.aluno.nome}">1</td>
+                                    <td th:text="${turma.semestre.code}">1</td>
                                     <td th:text="${matricula.dataMatricula}">1</td>
                                 </tr>
-                                <tr th:if="${#lists.isEmpty(aluno.matriculas)}">
-                                    <td colspan="4" style="text-align: center;">Nenhuma matrícula encontrada</td>
+                                <tr th:if="${#lists.isEmpty(turma.matriculas)}">
+                                    <td colspan="4" style="text-align: center;">Nenhuma matrícula encontrada.</td>
                                 </tr>
                             </tbody>
                         </table>

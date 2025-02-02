@@ -31,7 +31,7 @@ public class AlunoServiceImpl  implements AlunoService{
 		aluno.deleteById(id);
 	}
 	
-	private boolean isCpfValido(String cpf) {
+	public boolean isCpfValido(String cpf) {
 		return cpf != null && cpf.length() == 14;
 	}
 
@@ -53,6 +53,15 @@ public class AlunoServiceImpl  implements AlunoService{
 	@Override
 	public Aluno editar(Aluno a) {
 		Aluno al = this.buscarPorId(a.getId());
+		
+		if (!isCpfValido(a.getCpf())) {
+			throw new RuntimeException("CPF deve conter 11 caracteres.");
+		}
+		
+		if (!a.getCpf().equals(al.getCpf()) && aluno.existsByCpf(a.getCpf())) {
+			throw new RuntimeException("CPF já cadastrado!");
+		}
+		
 		al.setNome(a.getNome());
 		al.setEmail(a.getEmail());
 		al.setMatricula(a.getMatricula());
