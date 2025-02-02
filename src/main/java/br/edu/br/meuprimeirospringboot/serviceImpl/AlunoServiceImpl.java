@@ -13,6 +13,7 @@ import br.edu.br.meuprimeirospringboot.service.AlunoService;
 
 @Service
 public class AlunoServiceImpl  implements AlunoService{
+	
 	@Autowired
 	private AlunoRepository aluno;
 	

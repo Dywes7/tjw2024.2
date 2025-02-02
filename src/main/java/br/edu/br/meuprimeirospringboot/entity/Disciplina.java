@@ -27,7 +27,7 @@ public class Disciplina {
 	
 	private int horario;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Professor professor;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "disciplina", cascade = CascadeType.ALL)

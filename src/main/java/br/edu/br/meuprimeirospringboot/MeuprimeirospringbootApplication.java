@@ -20,6 +20,7 @@ import br.edu.br.meuprimeirospringboot.repository.ProfessorRepository;
 import br.edu.br.meuprimeirospringboot.repository.TelefoneRepository;
 import br.edu.br.meuprimeirospringboot.repository.TurmaRepository;
 import br.edu.br.meuprimeirospringboot.serviceImpl.AlunoServiceImpl;
+import br.edu.br.meuprimeirospringboot.serviceImpl.ProfessorServiceImpl;
 
 @SpringBootApplication
 public class MeuprimeirospringbootApplication  implements CommandLineRunner {
@@ -27,13 +28,14 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 	@Autowired
 	private AlunoRepository aluno;
 	@Autowired
-	private ProfessorRepository professor;
+	private ProfessorServiceImpl professor;
 	
 	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(MeuprimeirospringbootApplication.class, args);
 	}
+	
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -72,17 +74,9 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 		
 		
 		
-		Professor p1 = new Professor();
-		p1.setNome("Corneli Gomes");
-		professor.save(p1);
-		
-		Professor p2 = new Professor();
-		p2.setNome("Otávio Alcantara");
-		professor.save(p2);
-		
-		Professor p3 = new Professor();
-		p3.setNome("Jean Marcelo");
-		professor.save(p3);
+		professor.salvarSeNaoExistir("Corneli Gomes");
+		professor.salvarSeNaoExistir("Otávio Alcantara");
+		professor.salvarSeNaoExistir("Jean Marcelo");
 		
 		/*
 		Aluno a = new Aluno(); a.setNome("Fulano de tal");

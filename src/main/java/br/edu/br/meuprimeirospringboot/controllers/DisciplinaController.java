@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.br.meuprimeirospringboot.entity.Disciplina;
+import br.edu.br.meuprimeirospringboot.repository.ProfessorRepository;
 import br.edu.br.meuprimeirospringboot.serviceImpl.DisciplinaServiceImpl;
 
 @Controller
@@ -18,6 +19,9 @@ public class DisciplinaController {
 	
 	@Autowired
 	private DisciplinaServiceImpl disciplina;
+	
+	@Autowired
+	private ProfessorRepository professor;
 	
 	@GetMapping("/listar")
 	String ListarDisciplinas(ModelMap model) {
@@ -30,6 +34,7 @@ public class DisciplinaController {
 	@GetMapping("/cadastrar")
 	String CadastrarDisciplinas(ModelMap model) {
 		model.addAttribute("disciplina", new Disciplina());
+		model.addAttribute("professores", professor.findAllProfessores());
 		return "/disciplina/cadastro";
 	}
 	
@@ -56,6 +61,7 @@ public class DisciplinaController {
 	@GetMapping("/editar/{id}")
 	String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("disciplina", disciplina.buscarPorId(id));
+		model.addAttribute("professores", professor.findAllProfessores());
 		return "/disciplina/cadastro";
 	}
 	

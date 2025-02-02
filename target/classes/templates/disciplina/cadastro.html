@@ -36,6 +36,15 @@
                             <label for="ementa">Ementa</label>
 							<textarea class="form-control" id="ementa" placeholder="Ementa" th:field="*{ementa}" rows="5" required></textarea>
                         </div>
+						<div class="form-group col-md-6">
+						    <label for="horario">Horário</label>
+							<select class="form-control" id="horario" th:field="*{horario}">
+								<option value="0">AB (Manhã)</option>
+								<option value="1">CD (Manhã)</option>
+								<option value="2">AB (Tarde)</option>
+								<option value="3">CD (Tarde)</option>
+							</select>
+						</div>
                         <div class="form-group col-md-6">
                             <label for="cargaHorariaHoras">Carga Horária (Horas)</label>
 							<select class="form-control" id="cargaHorariaHoras" th:field="*{cargaHorariaHoras}">
@@ -43,7 +52,15 @@
 								<option value="60">60</option>
 								<option value="80">80</option>
 							</select>
-                        </div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="professor">Professor</label>
+							<select class="form-control" id="professor" th:field="*{professor}" required>
+								<option value="">Selecione um professor</option>
+								<option th:each="p : ${professores}" th:value="${p.id}" th:text="${p.nome}"></option>
+							</select>
+						</div>
+                       
 
                     </div>
 					<input type="hidden" th:field="*{id}" />

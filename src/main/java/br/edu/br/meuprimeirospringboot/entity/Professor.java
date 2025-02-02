@@ -28,7 +28,7 @@ public class Professor {
 	private List<Aluno> alunos;
 	*/
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "professor", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "professor")
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 	public Long getId() {
