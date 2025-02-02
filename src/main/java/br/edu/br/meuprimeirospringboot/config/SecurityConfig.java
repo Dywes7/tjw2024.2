@@ -20,6 +20,9 @@ public class SecurityConfig {
                 .requestMatchers("/","/css/**", "/js/**", "/image/**", "/webjars/**").permitAll() // Libera acesso para a URL "/"
                 .requestMatchers("/alunos/cadastrar").hasRole("ADMIN") // Apenas ADMIN pode acessar
                 .requestMatchers("/disciplinas/cadastrar").hasRole("ADMIN")
+                .requestMatchers("/turmas/cadastrar").hasRole("ADMIN")
+                .requestMatchers("/matriculas/cadastrar").hasRole("ADMIN")
+                .requestMatchers("/semestres/cadastrar").hasRole("ADMIN")
                 .anyRequest().authenticated()    
             )
             .logout(logout -> logout
