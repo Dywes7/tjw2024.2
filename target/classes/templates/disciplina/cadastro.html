@@ -34,11 +34,15 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="ementa">Ementa</label>
-							<textarea class="form-control" id="ementa" placeholder="Ementa" th:field="*{ementa}" rows="5"></textarea>
+							<textarea class="form-control" id="ementa" placeholder="Ementa" th:field="*{ementa}" rows="5" required></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cargaHorariaHoras">Carga Horária (Horas)</label>
-                            <input type="number" class="form-control" id="cargaHorariaHoras" placeholder="Horas" th:field="*{cargaHorariaHoras}" />
+							<select class="form-control" id="cargaHorariaHoras" th:field="*{cargaHorariaHoras}">
+								<option value="40">40</option>
+								<option value="60">60</option>
+								<option value="80">80</option>
+							</select>
                         </div>
 
                     </div>
