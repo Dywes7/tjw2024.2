@@ -36,11 +36,16 @@ public class Aluno {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "aluno", cascade = CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<Telefone>();
 	
+	/*
 	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Professor> professores;
+	*/
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dtNascimento;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "aluno", cascade = CascadeType.ALL)
+	private List<Matricula> matriculas = new ArrayList<Matricula>();
 
 	
 	@Transient
@@ -102,12 +107,11 @@ public class Aluno {
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
-	public List<Professor> getProfessores() {
-		return professores;
+	public List<Matricula> getMatriculas() {
+		return matriculas;
 	}
-	public void setProfessores(List<Professor> professores) {
-		this.professores = professores;
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
-	
 	
 }

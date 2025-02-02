@@ -8,17 +8,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.edu.br.meuprimeirospringboot.entity.Turma;
+import br.edu.br.meuprimeirospringboot.entity.Matricula;
 
-public interface TurmaRepository extends JpaRepository<Turma, Long>{
+public interface MatriculaRepository extends JpaRepository<Matricula, Long>{
 	
-	@Query("select t from Turma t")
-	List<Turma> findAllTurmas();
-	
+	@Query("select m from Matricula m")
+	List<Matricula> findAllMatriculas();
 	
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM Turma t WHERE t.id = :id")
-	void deleteTurmaById(@Param("id") Long id);
-	
+	@Query("DELETE FROM Matricula m WHERE m.id = :id")
+	void deleteMatriculaById(@Param("id") Long id);
 }

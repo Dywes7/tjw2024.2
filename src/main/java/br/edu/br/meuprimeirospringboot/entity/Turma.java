@@ -1,14 +1,17 @@
 package br.edu.br.meuprimeirospringboot.entity;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Turma {
@@ -19,9 +22,12 @@ public class Turma {
 	@ManyToOne
 	private Semestre semestre;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Disciplina> disciplinas;
-
+	@ManyToOne
+	private Disciplina disciplina;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "turma", cascade = CascadeType.ALL)
+	private List<Matricula> matricula = new ArrayList<Matricula>();
+	
 	public Long getId() {
 		return id;
 	}
@@ -31,20 +37,20 @@ public class Turma {
 	}
 
 
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
-
 	public Semestre getSemestre() {
 		return semestre;
 	}
 
 	public void setSemestre(Semestre semestre) {
 		this.semestre = semestre;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 	
 

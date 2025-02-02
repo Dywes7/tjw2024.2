@@ -28,6 +28,7 @@ public class TurmaServiceImpl implements TurmaService {
 
 	@Override
 	public void excluirPorId(Long id) {
+		/*
 	    Turma turmabusc = buscarPorId(id); // Busca a turma pelo ID
 	    System.out.println("id: " + id);
 	    // Remove as associações com as disciplinas
@@ -36,6 +37,9 @@ public class TurmaServiceImpl implements TurmaService {
 
 	    // turma.delete(turmabusc);;
 	    turma.deleteTurmaById(id);
+	    */
+		// turma.deleteById(id);
+		turma.deleteTurmaById(id);
 	}
 
 	@Override
@@ -47,7 +51,7 @@ public class TurmaServiceImpl implements TurmaService {
 	public Turma editar(Turma t) {
 		Turma t1 = this.buscarPorId(t.getId());
 		
-		t1.setDisciplinas(t.getDisciplinas());
+		t1.setDisciplina(t.getDisciplina());
 		t1.setSemestre(t.getSemestre());
 		
 		return turma.save(t1);

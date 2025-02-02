@@ -16,18 +16,84 @@
 
 	<!-- Custom styles for this template -->
 	<link href="/css/style.css" rel="stylesheet" />
+	<style>
+		/* Estilos modernos */
+		body {
+			background-color: #f8f9fa;
+			font-family: 'Segoe UI', sans-serif;
+		}
+		.navbar {
+			background: linear-gradient(135deg, #1e3c72, #2a5298);
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+		.navbar-brand {
+			font-weight: bold;
+			font-size: 1.5rem;
+			color: white !important;
+		}
+		.navbar-nav .nav-link {
+			color: rgba(255, 255, 255, 0.8) !important;
+			font-weight: 500;
+			transition: color 0.3s ease;
+		}
+		.navbar-nav .nav-link:hover {
+			color: white !important;
+		}
+		.sidebar {
+			background-color: #ffffff;
+			box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+		}
+		.card {
+			border: none;
+			border-radius: 10px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+		}
+		.card-header {
+			background: linear-gradient(135deg, #1e3c72, #2a5298);
+			color: white;
+			border-radius: 10px 10px 0 0;
+			font-weight: bold;
+		}
+		.dropdown-item {
+			color: #333;
+			transition: background-color 0.3s ease, color 0.3s ease;
+		}
+		.dropdown-item:hover {
+			background-color: #1e3c72;
+			color: white;
+		}
+		.layout-content {
+			padding: 20px;
+			background-color: white;
+			border-radius: 10px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			margin: 20px;
+		}
+	</style>
 </head>
 
 <body>
 	<header th:fragment="page_header">
-		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="btn btn-dark navbar-toggle pull-left">
-						<i class="oi oi-menu"></i>
-					</button>
-					<a class="navbar-brand " href="#">TJW 2024.2</a>
-					<a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+				<a class="navbar-brand" href="#">TJW 2024.2</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+						</li>
+					</ul>
 					<form id="logout-form" th:action="@{/logout}" method="POST" style="display: none;">
 						<input type="hidden" name="_csrf" value="${_csrf.token}">
 					</form>
@@ -38,64 +104,101 @@
 
 	<div class="layout-main">
 
-		<aside th:fragment="page_anside">>
-			<nav class="sidebar sidebar-open">
-				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="/"> <i class="oi oi-home"></i> <span>Home</span>
-						</a></li>
-				</ul>
+		<aside th:fragment="page_anside">
+			<nav class="sidebar sidebar-open p-3">
+				<!-- Menu dropdown usando <details> e <summary> com Bootstrap -->
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-home"></i> Home
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/">Página Inicial</a></li>
+						</ul>
+					</div>
+				</details>
 
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Alunos</span></li>
-					<li class="nav-item"><a class="nav-link" href="/alunos/cadastrar"> <i class="oi oi-plus"></i>
-							<span>Cadastrar </span>
-						</a></li>
-					<li class="nav-item"><a class="nav-link" href="/alunos/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-						</a></li>
-				</ul>
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Disciplinas</span></li>
-					<li class="nav-item"><a class="nav-link" href="/disciplinas/cadastrar"> <i class="oi oi-plus"></i>
-							<span>Cadastrar </span>
-						</a></li>
-					<li class="nav-item"><a class="nav-link" href="/disciplinas/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-						</a></li>
-				</ul>
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Semestres</span></li>
-					<li class="nav-item"><a class="nav-link" href="/semestres/cadastrar"> <i class="oi oi-plus"></i>
-							<span>Cadastrar </span>
-						</a></li>
-					<li class="nav-item"><a class="nav-link" href="/semestres/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-						</a></li>
-				</ul>
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Turmas</span></li>
-					<li class="nav-item"><a class="nav-link" href="/turmas/cadastrar"> <i class="oi oi-plus"></i>
-							<span>Cadastrar </span>
-						</a></li>
-					<li class="nav-item"><a class="nav-link" href="/turmas/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-						</a></li>
-				</ul>
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-people"></i> Alunos
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/alunos/cadastrar"><i class="oi oi-plus"></i> Cadastrar Aluno</a></li>
+							<li><a class="dropdown-item" href="/alunos/listar"><i class="oi oi-spreadsheet"></i> Listar Alunos</a></li>
+						</ul>
+					</div>
+				</details>
+
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-book"></i> Disciplinas
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/disciplinas/cadastrar"><i class="oi oi-plus"></i> Cadastrar Disciplina</a></li>
+							<li><a class="dropdown-item" href="/disciplinas/listar"><i class="oi oi-spreadsheet"></i> Listar Disciplinas</a></li>
+						</ul>
+					</div>
+				</details>
+
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-calendar"></i> Semestres
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/semestres/cadastrar"><i class="oi oi-plus"></i> Cadastrar Semestre</a></li>
+							<li><a class="dropdown-item" href="/semestres/listar"><i class="oi oi-spreadsheet"></i> Listar Semestres</a></li>
+						</ul>
+					</div>
+				</details>
+
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-document"></i> Turmas
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/turmas/cadastrar"><i class="oi oi-plus"></i> Cadastrar Turma</a></li>
+							<li><a class="dropdown-item" href="/turmas/listar"><i class="oi oi-spreadsheet"></i> Listar Turmas</a></li>
+						</ul>
+					</div>
+				</details>
+
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-document"></i> Matrículas
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/matriculas/cadastrar"><i class="oi oi-plus"></i> Cadastrar Matrícula</a></li>
+							<li><a class="dropdown-item" href="/matriculas/listar"><i class="oi oi-spreadsheet"></i> Listar Matrículas</a></li>
+						</ul>
+					</div>
+				</details>
+				
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-document"></i> Relatório
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/relatorio"><i class="oi oi-plus"></i> Gerar Relatório</a></li>
+						</ul>
+					</div>
+				</details>
 			</nav>
 		</aside>
 
 		<section class="layout-content">
-
-
-
 			<div class="container">
-
+				<!-- Conteúdo da página -->
+				<h1>Bem-vindo ao TJW 2024.2</h1>
+				<p>Este é o conteúdo principal da página.</p>
 			</div>
-
 		</section>
-
 	</div>
-
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
@@ -104,19 +207,5 @@
 	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-
-		$(function () {
-			$('[data-toggle="popover"]').popover();
-		});
-
-		$(document).ready(function () {
-			$(".navbar-toggle").click(function () {
-				$(".sidebar").toggleClass("sidebar-open");
-			})
-		});
-
-	</script>
 </body>
-
 </html>

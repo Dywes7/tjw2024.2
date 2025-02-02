@@ -26,9 +26,9 @@
 					<table class="table table-striped table-hover table-sm">
 						<thead>
 							<tr>
-								<th>#</th>
+								<th>Turma (ID)</th>
 								<th>Semestre</th>
-								<th>Disciplinas</th>
+								<th>Disciplina</th>
 								<th>Ação</th>
 							</tr>
 						</thead>
@@ -36,12 +36,7 @@
 						    <tr th:each="turma : ${turmas}">
 						        <td th:text="${turma.id}">1</td>
 						        <td th:text="${turma.semestre.code}">2025.1</td>
-								<td>
-								    <span th:each="disciplina, iterStat : ${turma.disciplinas}">
-								        <span th:text="${disciplina.nome}"></span>
-								        <span th:if="${!iterStat.last}">, </span>
-								    </span>
-								</td>
+								<td th:text="${turma.disciplina.nome}"></td>
 						        <td>
 						            <a class="btn btn-info btn-sm" th:href="@{/turmas/editar/{id} (id=${turma.id})}" role="button">
 						                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>

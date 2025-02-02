@@ -29,8 +29,9 @@
 						</div>
 						
 						<div class="form-group col-md-6">
-						    <label for="disciplinas">Disciplinas</label>
-						    <select class="form-control" id="disciplinas" th:field="*{disciplinas}" multiple>
+						    <label for="disciplina">Disciplina</label>
+						    <select class="form-control" id="disciplina" th:field="*{disciplina}">
+						        <option value="">Selecione uma disciplina</option>
 						        <option th:each="d : ${disciplinas}" th:value="${d.id}" th:text="${d.nome}"></option>
 						    </select>
 						</div>

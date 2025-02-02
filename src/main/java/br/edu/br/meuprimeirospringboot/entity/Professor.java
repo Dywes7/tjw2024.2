@@ -23,8 +23,10 @@ public class Professor {
 	
 	private String nome;
 	
+	/*
 	@ManyToMany(mappedBy = "professores")
 	private List<Aluno> alunos;
+	*/
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "professor", cascade = CascadeType.ALL)
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
@@ -45,13 +47,6 @@ public class Professor {
 		this.nome = nome;
 	}
 
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
-
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
-	}
 
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;

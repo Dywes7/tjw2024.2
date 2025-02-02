@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{home :: page_head}">
+</head>
+<body>
+    <!-- Coloque os scripts das bibliotecas logo após o início do <body> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <header th:replace="~{home :: page_header}"></header>
+    <div class="layout-main">
+        <aside th:replace="~{home :: page_anside}"></aside>
+        <section class="layout-content">
+            <div class="container">
+                <div th:each="aluno : ${alunos}" style="margin-bottom: 30px; padding: 10px; background-color: #f9f9f9; border-radius: 8px;">
+                    <h3 th:text="${aluno.nome}"></h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-sm" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th>ID Matrícula</th>        
+                                    <th>Turma (ID)</th>
+                                    <th>Disciplina</th>
+                                    <th>Data da Matrícula</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="matricula : ${aluno.matriculas}">
+                                    <td th:text="${matricula.id}">1</td>
+                                    <td th:text="${matricula.turma.id}">1</td>
+                                    <td th:text="${matricula.turma.disciplina.nome}">1</td>
+                                    <td th:text="${matricula.dataMatricula}">1</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(aluno.matriculas)}">
+                                    <td colspan="4" style="text-align: center;">Nenhuma matrícula encontrada</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="baixar-pdf">Baixar PDF</button>
+        </section>
+    </div>
+    <footer class="layout-footer">
+        <div class="container">
+            <!-- Informações do rodapé -->
+        </div>
+    </footer>
+
+    <!-- Outras bibliotecas (como jquery, bootstrap, etc.) podem continuar no final do body -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Agora, só depois que o DOM está carregado, você pode executar o código do PDF -->
+    <script type="text/javascript">
+        function gerarPDF() {
+            const element = document.querySelector('.container');
+
+            const options = {
+                margin: [10, 10, 10, 10], // Margens
+                filename: 'relatorio.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2canvas(element, options.html2canvas).then((canvas) => {
+                const imgData = canvas.toDataURL('image/jpeg', options.image.quality);
+                const pdf = new jspdf.jsPDF(options.jsPDF);
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save(options.filename);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('#baixar-pdf').addEventListener('click', function(e) {
+                e.preventDefault();
+                gerarPDF();
+            });
+        });
+    </script>
+</body>
+</html>

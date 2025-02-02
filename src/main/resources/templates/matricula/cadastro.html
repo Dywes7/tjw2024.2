@@ -10,29 +10,29 @@
         <section class="layout-content">
             <div class="page-header">
                 <nav class="navbar navbar-expand-md navbar-light bg-light">
-                    <a class="btn btn-primary btn-md" href="/turmas/listar" role="button">
+                    <a class="btn btn-primary btn-md" href="/matriculas/listar" role="button">
                         <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-                        <span>Listar Turmas</span>
+                        <span>Listar Matrículas</span>
                     </a>
                 </nav>
             </div>
 
             <div class="container" id="form-cadastro">
-                <form th:action=" ${turma.id == null} ? @{/turmas/salvar} : @{/turmas/editar}" method="POST" th:object="${turma}">
+                <form th:action=" ${matricula.id == null} ? @{/matriculas/salvar} : @{/matriculas/editar}" method="POST" th:object="${matricula}">
                     <div class="form-row">
 						<div class="form-group col-md-6">
-						    <label for="semestre">Semestre</label>
-						    <select class="form-control" id="semestre" th:field="*{semestre}">
-						        <option value="">Selecione um semestre</option>
-						        <option th:each="s : ${semestres}" th:value="${s.id}" th:text="${s.code}"></option>
+						    <label for="aluno">Aluno</label>
+						    <select class="form-control" id="aluno" th:field="*{aluno}">
+						        <option value="">Selecione um aluno</option>
+						        <option th:each="a : ${alunos}" th:value="${a.id}" th:text="${a.nome}"></option>
 						    </select>
 						</div>
 						
 						<div class="form-group col-md-6">
-						    <label for="disciplina">Disciplina</label>
-						    <select class="form-control" id="disciplina" th:field="*{disciplina}">
-						        <option value="">Selecione uma disciplina</option>
-						        <option th:each="d : ${disciplinas}" th:value="${d.id}" th:text="${d.nome}"></option>
+						    <label for="turma">Turma</label>
+						    <select class="form-control" id="turma" th:field="*{turma}">
+						        <option value="">Selecione uma turma</option>
+						        <option th:each="t : ${turmas}" th:value="${t.id}" th:text="${t.id}"></option>
 						    </select>
 						</div>
 						

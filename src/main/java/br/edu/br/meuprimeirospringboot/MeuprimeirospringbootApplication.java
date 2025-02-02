@@ -2,6 +2,7 @@ package br.edu.br.meuprimeirospringboot;
 
 
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.edu.br.meuprimeirospringboot.entity.Aluno;
 import br.edu.br.meuprimeirospringboot.entity.Professor;
+import br.edu.br.meuprimeirospringboot.entity.Telefone;
 import br.edu.br.meuprimeirospringboot.repository.AlunoRepository;
 import br.edu.br.meuprimeirospringboot.repository.AlunosCustimReoository;
 import br.edu.br.meuprimeirospringboot.repository.ProfessorRepository;
@@ -21,8 +23,9 @@ import br.edu.br.meuprimeirospringboot.serviceImpl.AlunoServiceImpl;
 
 @SpringBootApplication
 public class MeuprimeirospringbootApplication  implements CommandLineRunner {
+	
 	@Autowired
-	private AlunoServiceImpl aluno;
+	private AlunoRepository aluno;
 	@Autowired
 	private ProfessorRepository professor;
 	
@@ -81,6 +84,26 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 		p3.setNome("Jean Marcelo");
 		professor.save(p3);
 		
+		Aluno a = new Aluno(); a.setNome("Fulano de tal");
+		 a.setEmail("fulano@gmail.com"); a.setMatricula("cc-2024.2-00001212");
+		 aluno.save(a);
+		 
+		 Telefone t1 = new Telefone(); t1.setNumero("9999-9999"); t1.setIsWpp(false);
+		 t1.setAluno(a);
+		 
+		  
+		 Telefone t2 = new Telefone(); t2.setNumero("8888-8888"); t2.setIsWpp(true);
+		 t2.setAluno(a);
+		 
+		 
+		 
+		 List<Telefone> telefones = a.getTelefones(); telefones.add(t1);
+		 telefones.add(t2);
+		 
+		 a.setTelefones(telefones);
+		 
+		 
+		 aluno.save(a);
 		
 		
 		

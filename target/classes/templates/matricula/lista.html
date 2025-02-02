@@ -14,9 +14,9 @@
 			<nav class="navbar navbar-expand-md bg-light">
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 
-					<a class="btn btn-primary btn-md" href="/turmas/cadastrar" role="button">
+					<a class="btn btn-primary btn-md" href="/matriculas/cadastrar" role="button">
 						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
-						<span>Nova Turma</span>
+						<span>Nova Matrícula</span>
 					</a>
 				</div>
 			</nav>
@@ -26,22 +26,26 @@
 					<table class="table table-striped table-hover table-sm">
 						<thead>
 							<tr>
+								<th>ID Matrícula</th>
+								<th>Aluno</th>
 								<th>Turma (ID)</th>
-								<th>Semestre</th>
 								<th>Disciplina</th>
+								<th>Data da Matrícula</th>
 								<th>Ação</th>
 							</tr>
 						</thead>
 						<tbody>
-						    <tr th:each="turma : ${turmas}">
-						        <td th:text="${turma.id}">1</td>
-						        <td th:text="${turma.semestre.code}">2025.1</td>
-								<td th:text="${turma.disciplina.nome}"></td>
+						    <tr th:each="matricula : ${matriculas}">
+						        <td th:text="${matricula.id}">1</td>
+								<td th:text="${matricula.aluno.nome}">Diogo</td>
+								<td th:text="${matricula.turma.id}"></td>
+								<td th:text="${matricula.turma.disciplina.nome}"></td>
+								<td th:text="${matricula.dataMatricula}"></td>
 						        <td>
-						            <a class="btn btn-info btn-sm" th:href="@{/turmas/editar/{id} (id=${turma.id})}" role="button">
+						            <a class="btn btn-info btn-sm" th:href="@{/matriculas/editar/{id} (id=${matricula.id})}" role="button">
 						                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 						            </a>
-						            <a class="btn btn-danger btn-sm" th:href="@{/turmas/excluir/{id} (id=${turma.id})}" role="button">
+						            <a class="btn btn-danger btn-sm" th:href="@{/matriculas/excluir/{id} (id=${matricula.id})}" role="button">
 						                <span class="oi oi-trash" title="Excluir" aria-hidden="true"></span>
 						            </a>
 						        </td>
