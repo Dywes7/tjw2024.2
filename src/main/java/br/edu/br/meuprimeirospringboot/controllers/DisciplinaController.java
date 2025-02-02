@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.br.meuprimeirospringboot.entity.Disciplina;
 import br.edu.br.meuprimeirospringboot.serviceImpl.DisciplinaServiceImpl;
@@ -33,9 +34,17 @@ public class DisciplinaController {
 	}
 	
 	@PostMapping("/salvar")
-	String Salvar(Disciplina d) {
-		disciplina.cadastrar(d);
-		return "redirect:/disciplinas/listar";
+	String Salvar(Disciplina d, RedirectAttributes redirectAttributes) {
+		try {
+			disciplina.cadastrar(d);
+			redirectAttributes.addFlashAttribute("sucesso", "Disciplina cadastrada com sucesso!");
+			return "redirect:/disciplinas/listar";
+		} catch (RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/disciplinas/cadastrar";
+		}
+		
+		
 	}
 	
 	@GetMapping("/excluir/{id}")

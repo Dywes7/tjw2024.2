@@ -19,6 +19,7 @@ public class Disciplina {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(name = "nome", unique = true, nullable = false)
 	private String nome;
 	private int cargaHorariaHoras;
 	@Column(columnDefinition = "TEXT")

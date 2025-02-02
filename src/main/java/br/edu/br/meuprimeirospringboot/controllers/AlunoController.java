@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.br.meuprimeirospringboot.entity.Aluno;
 import br.edu.br.meuprimeirospringboot.serviceImpl.AlunoServiceImpl;
@@ -30,9 +31,15 @@ public class AlunoController {
 	}
 	
 	@PostMapping("/salvar")
-	String Salvar(Aluno a) {
-		aluno.cadastrar(a);
-		return "redirect:/alunos/listar";
+	String Salvar(Aluno a, RedirectAttributes redirectAttributes) {
+		try {
+	        aluno.cadastrar(a);
+	        redirectAttributes.addFlashAttribute("sucesso", "Aluno cadastrado com sucesso!");
+	        return "redirect:/alunos/listar";
+	    } catch (RuntimeException e) {
+	        redirectAttributes.addFlashAttribute("erro", e.getMessage());
+	        return "redirect:/alunos/cadastrar";
+	    }
 	}
 	
 	@GetMapping("/excluir/{id}")

@@ -12,4 +12,6 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
 	
 	@Query("select d from Disciplina d")
 	List<Disciplina> findAllDisciplinas();
+	
+	boolean existsByNome(String nome);
 }

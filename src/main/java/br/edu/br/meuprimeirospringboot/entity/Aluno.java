@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.processing.Pattern;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
@@ -29,6 +30,7 @@ public class Aluno {
 	private String nome;
 	private String matricula;
 	private String email;
+	@Column(name = "cpf", unique = true, nullable = false)
 	private String cpf;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco e;

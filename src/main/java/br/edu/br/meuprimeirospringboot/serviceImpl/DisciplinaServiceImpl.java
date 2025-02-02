@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.br.meuprimeirospringboot.entity.Disciplina;
 import br.edu.br.meuprimeirospringboot.repository.DisciplinaRepository;
@@ -32,7 +33,11 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 	}
 
 	@Override
+	@Transactional
 	public Disciplina cadastrar(Disciplina d) {
+		if (disciplina.existsByNome(d.getNome())) {
+			throw new RuntimeException("Disciplina já existe!");
+		}
 		return disciplina.save(d);
 	}
 

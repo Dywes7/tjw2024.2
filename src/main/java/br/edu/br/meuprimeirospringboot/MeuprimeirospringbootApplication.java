@@ -84,6 +84,7 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 		p3.setNome("Jean Marcelo");
 		professor.save(p3);
 		
+		/*
 		Aluno a = new Aluno(); a.setNome("Fulano de tal");
 		 a.setEmail("fulano@gmail.com"); a.setMatricula("cc-2024.2-00001212");
 		 aluno.save(a);
@@ -94,7 +95,7 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 		  
 		 Telefone t2 = new Telefone(); t2.setNumero("8888-8888"); t2.setIsWpp(true);
 		 t2.setAluno(a);
-		 
+		
 		 
 		 
 		 List<Telefone> telefones = a.getTelefones(); telefones.add(t1);
@@ -104,6 +105,8 @@ public class MeuprimeirospringbootApplication  implements CommandLineRunner {
 		 
 		 
 		 aluno.save(a);
+		 
+		  */
 		
 		
 		

@@ -20,5 +20,7 @@ public interface AlunoRepository extends JpaRepository<Aluno,Long> {
 	@Query("select a from Aluno a where a.email = :email")
 	Optional<Aluno> findAlunoByEmailOptional(String email);
 	
+	boolean existsByCpf(String cpf);
+	
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.br.meuprimeirospringboot.entity.Aluno;
 import br.edu.br.meuprimeirospringboot.repository.AlunoRepository;
@@ -31,7 +32,11 @@ public class AlunoServiceImpl  implements AlunoService{
 	}
 
 	@Override
+	@Transactional
 	public Aluno cadastrar(Aluno a) {
+		 if (aluno.existsByCpf(a.getCpf())) {
+	            throw new RuntimeException("CPF já cadastrado!");
+	        }
 		return aluno.save(a);
 	}
 
