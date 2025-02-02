@@ -29,11 +29,13 @@ public class SecurityConfig {
                 .logoutUrl("/logout")                     
                 .logoutSuccessUrl("/login?logout=true")  
                 .invalidateHttpSession(true)             
-                .deleteCookies("JSESSIONID")             
+                .deleteCookies("JSESSIONID")  
+                .clearAuthentication(true)
             )
             .formLogin(form -> form          
                 .loginPage("/login")         
-                .permitAll()                 
+                .permitAll()
+                .defaultSuccessUrl("/", true)
             )
             .httpBasic(httpBasic -> httpBasic.disable());
 
