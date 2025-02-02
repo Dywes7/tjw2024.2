@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.br.meuprimeirospringboot.entity.Matricula;
 import br.edu.br.meuprimeirospringboot.repository.MatriculaRepository;
@@ -32,8 +33,13 @@ public class MatriculaServiceImpl implements MatriculaService {
 	}
 
 	@Override
-	public Matricula cadastrar(Matricula s) {
-		return matricula.save(s);
+	@Transactional
+	public Matricula cadastrar(Matricula m) {
+		if (matricula.existsByAlunoIdAndTurmaId(m.getAluno().getId(), m.getTurma().getId())) {
+			throw new RuntimeException("O aluno já está matriculado nesta turma!");
+		}
+		
+		return matricula.save(m);
 	}
 
 	@Override

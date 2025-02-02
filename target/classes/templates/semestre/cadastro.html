@@ -18,6 +18,13 @@
             </div>
 
             <div class="container" id="form-cadastro">
+				<div th:if="${erro}" class="alert alert-danger">
+				    <span th:text="${erro}"></span>
+				</div>
+
+				<div th:if="${sucesso}" class="alert alert-success">
+				    <span th:text="${sucesso}"></span>
+				</div>
                 <form th:action=" ${semestre.id == null} ? @{/semestres/salvar} : @{/semestres/editar}" method="POST" th:object="${semestre}">
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -34,11 +41,11 @@
 						</div>
                         <div class="form-group col-md-6">
                             <label for="dataInicio">Início do Semestre</label>
-                            <input type="date" class="form-control" id="dataInicio" placeholder="Data de início" th:field="*{dataInicio}" />
+                            <input type="date" class="form-control" id="dataInicio" placeholder="Data de início" th:field="*{dataInicio}" required />
                         </div>
 						<div class="form-group col-md-6">
 						     <label for="dataFim">Fim do Semestre</label>
-						      <input type="date" class="form-control" id="dataFim" placeholder="Data do Fim" th:field="*{dataFim}" />
+						      <input type="date" class="form-control" id="dataFim" placeholder="Data do Fim" th:field="*{dataFim}" required />
 						</div>
 						
 

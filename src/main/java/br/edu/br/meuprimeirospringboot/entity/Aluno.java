@@ -3,6 +3,7 @@ package br.edu.br.meuprimeirospringboot.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.hibernate.annotations.processing.Pattern;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -52,6 +53,21 @@ public class Aluno {
 	
 	@Transient
 	private int idade;
+	
+	public Aluno() {
+		this.matricula = gerarMatricula();
+	}
+	
+	private String gerarMatricula() {
+		String prefixo = "cc";
+        int ano = LocalDate.now().getYear();
+        int semestre = (LocalDate.now().getMonthValue() <= 6) ? 1 : 2; // Até junho = 1º semestre, depois = 2º semestre
+
+        // Gerar um identificador aleatório (4 dígitos numéricos)
+        int numeroAleatorio = new Random().nextInt(9000) + 1000; // Gera um número entre 1000 e 9999
+
+        return String.format("%s-%d.%d-%d", prefixo, ano, semestre, numeroAleatorio);
+	}
 	
 	public Long getId() {
 		return id;

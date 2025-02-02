@@ -30,13 +30,23 @@ public class AlunoServiceImpl  implements AlunoService{
 	public void excluirPorId(Long id) {
 		aluno.deleteById(id);
 	}
+	
+	private boolean isCpfValido(String cpf) {
+		return cpf != null && cpf.length() == 14;
+	}
 
 	@Override
 	@Transactional
 	public Aluno cadastrar(Aluno a) {
-		 if (aluno.existsByCpf(a.getCpf())) {
-	            throw new RuntimeException("CPF já cadastrado!");
-	        }
+		
+		if (!isCpfValido(a.getCpf())) {
+			throw new RuntimeException("CPF deve conter 11 caracteres.");
+		}
+		
+		if (aluno.existsByCpf(a.getCpf())) {
+	        throw new RuntimeException("CPF já cadastrado!");
+	    }
+		 
 		return aluno.save(a);
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.br.meuprimeirospringboot.entity.Semestre;
 import br.edu.br.meuprimeirospringboot.repository.SemestreRepository;
@@ -30,9 +31,14 @@ public class SemestreServiceImpl implements SemestreService {
 		semestre.deleteById(id);
 		
 	}
-
+	
 	@Override
+	@Transactional
 	public Semestre cadastrar(Semestre s) {
+		if (semestre.existsByAnoAndEtapa(s.getAno(), s.getEtapa())) {
+			throw new RuntimeException("Semestre " + s.getCode() + " já existe!");
+		}
+		
 		return semestre.save(s);
 	}
 

@@ -19,4 +19,6 @@ public interface MatriculaRepository extends JpaRepository<Matricula, Long>{
 	@Modifying
 	@Query("DELETE FROM Matricula m WHERE m.id = :id")
 	void deleteMatriculaById(@Param("id") Long id);
+	
+	boolean existsByAlunoIdAndTurmaId(Long alunoId, Long turmaId);
 }

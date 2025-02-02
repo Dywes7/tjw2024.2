@@ -11,4 +11,6 @@ public interface SemestreRepository extends JpaRepository<Semestre,Long> {
 	
 	@Query("select s from Semestre s")
 	List<Semestre> findAllSemestres();
+	
+	boolean existsByAnoAndEtapa(int ano, int etapa);
 }

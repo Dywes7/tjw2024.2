@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.br.meuprimeirospringboot.entity.Matricula;
 import br.edu.br.meuprimeirospringboot.serviceImpl.AlunoServiceImpl;
@@ -39,9 +40,17 @@ public class MatriculaController {
 	}
 	
 	@PostMapping("/salvar")
-	String Salvar(Matricula s) {
-		matricula.cadastrar(s);
-		return "redirect:/matriculas/listar";
+	String Salvar(Matricula s, RedirectAttributes redirectAttributes) {
+		try {
+			matricula.cadastrar(s);
+			redirectAttributes.addFlashAttribute("sucesso", "Matrícula realizada com sucesso!");
+			return "redirect:/matriculas/listar";
+		} catch(RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/matriculas/cadastrar";
+		}
+		
+		
 	}
 	
 	@GetMapping("/excluir/{id}")
