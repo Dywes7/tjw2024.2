@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import br.edu.br.meuprimeirospringboot.entity.Turma;
 import br.edu.br.meuprimeirospringboot.serviceImpl.DisciplinaServiceImpl;
+import br.edu.br.meuprimeirospringboot.serviceImpl.ProfessorServiceImpl;
 import br.edu.br.meuprimeirospringboot.serviceImpl.SemestreServiceImpl;
 import br.edu.br.meuprimeirospringboot.serviceImpl.TurmaServiceImpl;
 
@@ -22,6 +23,8 @@ public class TurmaController {
 	private SemestreServiceImpl semestre;
 	@Autowired
 	private DisciplinaServiceImpl disciplina;
+	@Autowired
+	private ProfessorServiceImpl professor;
 	
 	@GetMapping("/listar")
 	String ListarTurmas(ModelMap model) {
@@ -34,6 +37,7 @@ public class TurmaController {
 		model.addAttribute("turma", new Turma());
 		model.addAttribute("semestres", semestre.buscarTodos());
 		model.addAttribute("disciplinas", disciplina.buscarTodos());
+		model.addAttribute("professores", professor.buscarTodos());
 		return "/turma/cadastro";
 	}
 	
@@ -55,6 +59,7 @@ public class TurmaController {
 		model.addAttribute("turma", turma.buscarPorId(id));
 		model.addAttribute("semestres", semestre.buscarTodos());
 		model.addAttribute("disciplinas", disciplina.buscarTodos());
+		model.addAttribute("professores", professor.buscarTodos());
 		return "/turma/cadastro";
 	}
 	

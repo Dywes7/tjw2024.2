@@ -27,7 +27,7 @@ public class Professor {
 	*/
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "professor")
-	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	private List<Turma> turmas = new ArrayList<Turma>();
 
 	public Long getId() {
 		return id;
@@ -45,15 +45,12 @@ public class Professor {
 		this.nome = nome;
 	}
 
-
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
+	public List<Turma> getTurmas() {
+		return turmas;
 	}
 
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
 	}
-	
-	
-	
+
 }

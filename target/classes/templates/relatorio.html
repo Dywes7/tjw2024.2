@@ -13,7 +13,7 @@
         <section class="layout-content">
             <div class="container">
                 <div th:each="turma : ${turmas}" style="margin-bottom: 30px; padding: 10px; background-color: #f9f9f9; border-radius: 8px;">
-                    <h3 th:text="'Turma ' + ${turma.id} + ' (' + ${turma.disciplina.nome} + ')'"></h3>
+                    <h3 th:text="'Turma ' + ${turma.id} + ' (' + ${turma.disciplina.nome} + ') | Professor: ' + ${turma.professor.nome}"></h3>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-sm" style="width: 100%; border-collapse: collapse;">
                             <thead>

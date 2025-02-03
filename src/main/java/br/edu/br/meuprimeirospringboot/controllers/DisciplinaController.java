@@ -20,9 +20,6 @@ public class DisciplinaController {
 	@Autowired
 	private DisciplinaServiceImpl disciplina;
 	
-	@Autowired
-	private ProfessorRepository professor;
-	
 	@GetMapping("/listar")
 	String ListarDisciplinas(ModelMap model) {
 		/* o método está adicionando um atributo chamado "disciplinas" ao objeto model.
@@ -34,7 +31,6 @@ public class DisciplinaController {
 	@GetMapping("/cadastrar")
 	String CadastrarDisciplinas(ModelMap model) {
 		model.addAttribute("disciplina", new Disciplina());
-		model.addAttribute("professores", professor.findAllProfessores());
 		return "/disciplina/cadastro";
 	}
 	
@@ -60,8 +56,7 @@ public class DisciplinaController {
 	
 	@GetMapping("/editar/{id}")
 	String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("disciplina", disciplina.buscarPorId(id));
-		model.addAttribute("professores", professor.findAllProfessores());
+		model.addAttribute("disciplina", disciplina.buscarPorId(id));	
 		return "/disciplina/cadastro";
 	}
 	

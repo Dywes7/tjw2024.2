@@ -25,10 +25,9 @@ public class Disciplina {
 	@Column(columnDefinition = "TEXT")
 	private String ementa;
 	
-	private int horario;
 	
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	private Professor professor;
+	
+	
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "disciplina", cascade = CascadeType.ALL)
 	private List<Turma> turmas = new ArrayList<Turma>();
@@ -58,18 +57,7 @@ public class Disciplina {
 	public void setEmenta(String ementa) {
 		this.ementa = ementa;
 	}
-	public int getHorario() {
-		return horario;
-	}
-	public void setHorario(int horario) {
-		this.horario = horario;
-	}
-	public Professor getProfessor() {
-		return professor;
-	}
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
+
 	public List<Turma> getTurmas() {
 		return turmas;
 	}

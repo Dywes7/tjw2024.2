@@ -31,8 +31,6 @@
 								<th>Disciplina</th>
 								<th>Ementa</th>
 								<th>Carga Horária (Horas)</th>
-								<th>Professor</th>
-								<th>Horário</th>
 								<th>Ação</th>
 							</tr>
 						</thead>
@@ -41,15 +39,7 @@
 								<td th:text="${disciplina.id}">1</td>
 								<td th:text="${disciplina.nome}">Matemática</td>
 								<td th:text="${disciplina.ementa}">Frações, Equações de 1º e 2º graus, Sistemas de Equações, Razão e Proporção, Conjuntos, Funções polinomial do 1º grau, polinomial do 2º grau, exponencial, logarítmica e modular, Progressão Aritmética e Geométrica.</td>
-								<td th:text="${disciplina.cargaHorariaHoras}">80</td>
-								<td th:text="${disciplina.professor.nome}">Professor</td>
-								<td th:switch="${disciplina.horario}">
-								    <span th:case="0">AB (Manhã)</span>
-								    <span th:case="1">CD (Manhã)</span>
-								    <span th:case="2">AB (Tarde)</span>
-								    <span th:case="3">CD (Tarde)</span>
-								    <span th:case="*">Desconhecido</span> <!-- Para valores inesperados -->
-								</td>
+								<td th:text="${disciplina.cargaHorariaHoras}">80</td>				
 								<td colspan="2">
 									<a class="btn btn-info btn-sm" th:href="@{/disciplinas/editar/{id} (id=${disciplina.id})}" role="button">
 										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>

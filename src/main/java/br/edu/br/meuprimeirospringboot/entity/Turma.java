@@ -22,11 +22,32 @@ public class Turma {
 	@ManyToOne
 	private Semestre semestre;
 	
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
+	public int getHorario() {
+		return horario;
+	}
+
+	public void setHorario(int horario) {
+		this.horario = horario;
+	}
+
 	@ManyToOne
 	private Disciplina disciplina;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "turma", cascade = CascadeType.ALL)
 	private List<Matricula> matriculas = new ArrayList<Matricula>();
+	
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Professor professor;
+	
+	private int horario;
 	
 	public Long getId() {
 		return id;

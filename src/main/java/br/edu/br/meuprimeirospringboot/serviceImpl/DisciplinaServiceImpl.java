@@ -52,8 +52,6 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 		d1.setNome(d.getNome());
 		d1.setEmenta(d.getEmenta());
 		d1.setCargaHorariaHoras(d.getCargaHorariaHoras());
-		d1.setHorario(d.getHorario());
-		d1.setProfessor(d.getProfessor());
 		
 		return disciplina.save(d1);
 	}

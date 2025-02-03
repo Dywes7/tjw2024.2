@@ -51,6 +51,8 @@ public class TurmaServiceImpl implements TurmaService {
 		
 		t1.setDisciplina(t.getDisciplina());
 		t1.setSemestre(t.getSemestre());
+		t1.setHorario(t.getHorario());
+		t1.setProfessor(t.getProfessor());
 		
 		return turma.save(t1);
 	}
