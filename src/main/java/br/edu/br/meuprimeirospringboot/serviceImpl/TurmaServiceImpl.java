@@ -41,13 +41,25 @@ public class TurmaServiceImpl implements TurmaService {
 	}
 
 	@Override
-	public Turma cadastrar(Turma d) {
-		return turma.save(d);
+	public Turma cadastrar(Turma t) {
+		
+		if (turma.existsByProfessorIdAndHorario(t.getProfessor().getId(), t.getHorario())) {
+			throw new RuntimeException("O professor já leciona neste horário!");
+		}
+		
+		return turma.save(t);
 	}
 
 	@Override
 	public Turma editar(Turma t) {
 		Turma t1 = this.buscarPorId(t.getId());
+		
+		if (!(t1.getProfessor().getId().equals(t.getProfessor().getId()) && t1.getHorario().equals(t.getHorario()))) {
+			if (turma.existsByProfessorIdAndHorario(t.getProfessor().getId(), t.getHorario())) {
+				throw new RuntimeException("O professor já leciona neste horário!");
+			}
+		}
+		
 		
 		t1.setDisciplina(t.getDisciplina());
 		t1.setSemestre(t.getSemestre());

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import br.edu.br.meuprimeirospringboot.entity.Turma;
 import br.edu.br.meuprimeirospringboot.serviceImpl.DisciplinaServiceImpl;
 import br.edu.br.meuprimeirospringboot.serviceImpl.ProfessorServiceImpl;
@@ -42,9 +44,20 @@ public class TurmaController {
 	}
 	
 	@PostMapping("/salvar")
-	String Salvar(Turma t) {
-		turma.cadastrar(t);
-		return "redirect:/turmas/listar";
+	String Salvar(Turma t, RedirectAttributes redirectAttributes) {
+		try {
+			
+			turma.cadastrar(t);
+			redirectAttributes.addFlashAttribute("sucesso", "Turma criada com sucesso!");
+			return "redirect:/turmas/listar";
+			
+			
+		} catch (RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/turmas/cadastrar";
+			
+		}
+	
 	}
 	
 	@GetMapping("/excluir/{id}")
@@ -64,9 +77,19 @@ public class TurmaController {
 	}
 	
 	@PostMapping("/editar")
-	String Editar(Turma d) {
-		turma.editar(d);
-		return "redirect:/turmas/listar";
+	String Editar(Turma t, RedirectAttributes redirectAttributes) {
+		try {
+			
+			turma.editar(t);
+			redirectAttributes.addFlashAttribute("sucesso", "Turma criada com sucesso!");
+			return "redirect:/turmas/listar";
+			
+			
+		} catch (RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/turmas/editar/" + t.getId();
+			
+		}
 	}
 
 }

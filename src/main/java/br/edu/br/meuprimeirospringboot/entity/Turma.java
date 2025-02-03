@@ -22,21 +22,6 @@ public class Turma {
 	@ManyToOne
 	private Semestre semestre;
 	
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
-	public int getHorario() {
-		return horario;
-	}
-
-	public void setHorario(int horario) {
-		this.horario = horario;
-	}
 
 	@ManyToOne
 	private Disciplina disciplina;
@@ -47,8 +32,16 @@ public class Turma {
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Professor professor;
 	
-	private int horario;
+	private Long horario;
 	
+	public Long getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Long horario) {
+		this.horario = horario;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -82,5 +75,12 @@ public class Turma {
 		this.matriculas = matriculas;
 	}
 	
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
 
 }

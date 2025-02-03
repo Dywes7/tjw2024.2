@@ -21,4 +21,7 @@ public interface TurmaRepository extends JpaRepository<Turma, Long>{
 	@Query("DELETE FROM Turma t WHERE t.id = :id")
 	void deleteTurmaById(@Param("id") Long id);
 	
+	
+	boolean existsByProfessorIdAndHorario(Long professorId, Long horario);
+	
 }

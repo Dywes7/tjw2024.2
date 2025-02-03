@@ -18,6 +18,12 @@
             </div>
 
             <div class="container" id="form-cadastro">
+				<div th:if="${erro}" class="alert alert-danger">
+				    <span th:text="${erro}"></span>
+				</div>
+				<div th:if="${sucesso}" class="alert alert-success">
+					<span th:text="${sucesso}"></span>
+				</div>
                 <form th:action=" ${turma.id == null} ? @{/turmas/salvar} : @{/turmas/editar}" method="POST" th:object="${turma}">
                     <div class="form-row">
 						<div class="form-group col-md-6">
